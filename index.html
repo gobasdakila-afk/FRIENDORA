@@ -221,7 +221,23 @@ window.logoutAccount = async function() {
   await signOut(auth);
   alert("You have logged out.");
 };
+
+onAuthStateChanged(auth, (user) => {
+  const joinCard = document.getElementById("join");
+  const profileSection = document.getElementById("profile");
+
+  if (user) {
+    if (joinCard) joinCard.style.display = "none";
+    if (profileSection) profileSection.style.display = "block";
+    console.log("Logged in:", user.email);
+  } else {
+    if (joinCard) joinCard.style.display = "block";
+    if (profileSection) profileSection.style.display = "none";
+  }
+});
+
 console.log("FRIENDORA Firebase Connected!");
+
 </script>
   
 </body>
