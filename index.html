@@ -134,6 +134,25 @@ function createPost(){
 }
 </script>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDyhqkXwNAyjAP8e9zJFKdxgRimjg1WrHk",
+  authDomain: "friendora-40842.firebaseapp.com",
+  projectId: "friendora-40842",
+  storageBucket: "friendora-40842.firebasestorage.app",
+  messagingSenderId: "270873340717",
+  appId: "1:270873340717:web:b63485595d5fe3425341a4",
+  measurementId: "G-6DK91EXBEZ"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+console.log("FRIENDORA Firebase Connected!");
+</script>
   
 </body>
 </html>
