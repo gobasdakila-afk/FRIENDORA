@@ -136,7 +136,7 @@ function createPost(){
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 
-import {
+import {  updateProfile,
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -155,6 +155,31 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+  window.updateMyProfile = async function() {
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Please log in first!");
+    return;
+  }
+
+  const name = prompt("Enter your FRIENDORA username:");
+
+  if (!name || !name.trim()) {
+    alert("Username is required!");
+    return;
+  }
+
+  try {
+    await updateProfile(user, {
+      displayName: name.trim()
+    });
+
+    alert("Your FRIENDORA profile has been updated!");
+  } catch (error) {
+    alert(error.message);
+  }
+};
 window.createAccount = async function() {
   const email = prompt("Enter your email:");
   if (!email) return;
