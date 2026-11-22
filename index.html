@@ -255,8 +255,13 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("profileName").textContent =
       user.displayName || "FRIENDORA Member";
 
-    document.getElementById("profileEmail").textContent =
-      user.email || "";
+    
+document.getElementById("profileEmail").textContent =
+  user.email || "Email not available";
+
+console.log("FRIENDORA USER:", user);
+console.log("USER EMAIL:", user.email);
+
 
   } else {
     if (joinCard) joinCard.style.display = "block";
