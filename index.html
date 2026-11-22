@@ -136,8 +136,14 @@ function createPost(){
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyDyhqkXwNAyjAP8e9zJFKdxgRimjg1WrHk",
   authDomain: "friendora-40842.firebaseapp.com",
@@ -150,7 +156,40 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+window.createAccount = async function() {
+  const email = prompt("Enter your email:");
+  if (!email) return;
 
+  const password = prompt("Create your password (minimum 6 characters):");
+  if (!password) return;
+
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+    alert("Welcome to FRIENDORA! Account created successfully!");
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+window.loginAccount = async function() {
+  const email = prompt("Enter your email:");
+  if (!email) return;
+
+  const password = prompt("Enter your password:");
+  if (!password) return;
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Welcome back to FRIENDORA!");
+  } catch (error) {
+    alert(error.message);
+  }
+};
+
+window.logoutAccount = async function() {
+  await signOut(auth);
+  alert("You have logged out.");
+};
 console.log("FRIENDORA Firebase Connected!");
 </script>
   
